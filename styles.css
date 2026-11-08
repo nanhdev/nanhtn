@@ -666,3 +666,360 @@ body.video-normal #video-overlay {
   }
 
 }
+
+/* ==================== DONATE BUTTONS & MODAL ==================== */
+.donate-btn-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  background: linear-gradient(135deg, #ff3366, #ff6b4a) !important;
+  padding: 6px 14px !important;
+  border-radius: 20px !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  text-decoration: none !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 0 4px 15px rgba(255, 51, 102, 0.5) !important;
+  animation: donate-badge-pulse 2s infinite ease-in-out !important;
+  cursor: pointer;
+  margin-left: 6px !important;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  letter-spacing: 0.5px;
+}
+
+.donate-btn-badge i {
+  font-size: 14px !important;
+  margin: 0 !important;
+  color: #ffffff !important;
+}
+
+.donate-btn-badge span {
+  font-family: 'Inter', sans-serif !important;
+  color: #ffffff !important;
+}
+
+.donate-btn-badge:hover {
+  transform: translateY(-3px) scale(1.08) !important;
+  box-shadow: 0 8px 25px rgba(255, 51, 102, 0.8) !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+/* Floating Donate Widget at Corner */
+.floating-donate-btn {
+  position: fixed;
+  bottom: 26px;
+  right: 26px;
+  z-index: 1002;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  background: linear-gradient(135deg, rgba(255, 51, 102, 0.95), rgba(255, 107, 74, 0.95));
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: 30px;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(255, 51, 102, 0.5), 0 0 15px rgba(255, 51, 102, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: float-btn 3s ease-in-out infinite alternate, donate-badge-pulse 2.2s infinite;
+}
+
+body.video-normal .floating-donate-btn {
+  display: flex;
+}
+
+.floating-donate-btn:hover {
+  transform: translateY(-5px) scale(1.08);
+  box-shadow: 0 14px 35px rgba(255, 51, 102, 0.8), 0 0 25px rgba(255, 51, 102, 0.6);
+}
+
+.floating-donate-btn i {
+  font-size: 16px;
+  animation: tilt-steam 1.5s infinite ease-in-out alternate;
+}
+
+@keyframes float-btn {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-6px); }
+}
+
+@keyframes donate-badge-pulse {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(255, 51, 102, 0.5);
+  }
+  50% {
+    box-shadow: 0 4px 25px rgba(255, 51, 102, 0.9);
+  }
+}
+
+@keyframes tilt-steam {
+  0% { transform: rotate(-8deg); }
+  100% { transform: rotate(8deg); }
+}
+
+.donate-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.donate-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.donate-modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.donate-modal-content {
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  max-width: 420px;
+  max-height: 90vh;
+  background: rgba(22, 23, 29, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 24px;
+  padding: 28px 24px 22px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 83, 118, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: #fff;
+  text-align: center;
+  overflow-y: auto;
+  box-sizing: border-box;
+  transform: scale(0.9) translateY(20px);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.donate-modal.active .donate-modal-content {
+  transform: scale(1) translateY(0);
+}
+
+.donate-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  color: #aaa;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.donate-close-btn:hover {
+  background: rgba(255, 75, 75, 0.8);
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+.donate-header {
+  margin-bottom: 18px;
+}
+
+.donate-header-icon {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 10px;
+  background: linear-gradient(135deg, rgba(255, 83, 118, 0.2), rgba(255, 42, 85, 0.35));
+  border: 1px solid rgba(255, 83, 118, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff5376;
+  font-size: 22px;
+  box-shadow: 0 0 20px rgba(255, 83, 118, 0.3);
+  animation: pulse-heart 2s infinite ease-in-out;
+}
+
+@keyframes pulse-heart {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+.donate-header h3 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+}
+
+.donate-subtitle {
+  margin: 0;
+  font-size: 13.5px;
+  color: #b5b5c0;
+  line-height: 1.4;
+}
+
+.donate-qr-wrapper {
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 16px;
+  display: inline-block;
+  margin-bottom: 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  max-width: 220px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.donate-qr-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.donate-bank-info {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 14px 16px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.donate-info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13.5px;
+  gap: 8px;
+}
+
+.donate-info-row .info-label {
+  color: #8f92a3;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.donate-info-row .info-value {
+  color: #ffffff;
+  font-weight: 600;
+  text-align: right;
+  word-break: break-word;
+}
+
+.stk-copy-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+.stk-copy-box .stk-num {
+  font-family: 'Courier New', monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: #4ade80;
+  letter-spacing: 1px;
+}
+
+.copy-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  padding: 4px 8px;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.copy-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.copy-btn.copied {
+  background: #22c55e;
+  color: #ffffff;
+}
+
+.donate-footer-note {
+  margin-top: 14px;
+  font-size: 12px;
+  color: #7b7e91;
+}
+
+@media screen and (max-width: 480px) {
+  .donate-modal-content {
+    padding: 22px 16px 18px;
+    max-width: 92%;
+    border-radius: 18px;
+  }
+  .donate-qr-wrapper {
+    max-width: 180px;
+    padding: 8px;
+    margin-bottom: 14px;
+  }
+  .donate-header h3 {
+    font-size: 19px;
+  }
+  .donate-subtitle {
+    font-size: 12.5px;
+  }
+  .donate-info-row {
+    font-size: 12.5px;
+  }
+  .stk-copy-box .stk-num {
+    font-size: 14px;
+  }
+  .floating-donate-btn {
+    bottom: 16px;
+    right: 16px;
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+  .donate-btn-badge {
+    padding: 4px 10px !important;
+    font-size: 11px !important;
+    gap: 4px !important;
+  }
+}

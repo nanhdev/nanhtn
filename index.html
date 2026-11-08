@@ -116,6 +116,60 @@
         <a href="mailto:anhle4997@gmail.com" target="_blank">
           <i class="fa-brands fa-google mail"></i>
         </a> 
+        <a href="javascript:void(0)" id="donate-btn" class="donate-btn-badge donate-trigger" title="Ủng hộ / Donate cho Nanh">
+          <i class="fa-solid fa-mug-hot"></i>
+          <span>Donate</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Donate Button -->
+  <button id="floating-donate-btn" class="floating-donate-btn donate-trigger" title="Ủng hộ / Donate cho Nanh">
+    <i class="fa-solid fa-mug-hot"></i>
+    <span>Donate</span>
+  </button>
+
+  <!-- Donate Modal -->
+  <div id="donate-modal" class="donate-modal">
+    <div class="donate-modal-overlay" id="donate-overlay"></div>
+    <div class="donate-modal-content">
+      <button class="donate-close-btn" id="donate-close" title="Đóng">&times;</button>
+      <div class="donate-header">
+        <div class="donate-header-icon">
+          <i class="fa-solid fa-heart"></i>
+        </div>
+        <h3>Ủng hộ / Donate</h3>
+        <p class="donate-subtitle">Cảm ơn bạn đã ghé thăm và tiếp thêm động lực cho Nanh! ☕</p>
+      </div>
+
+      <div class="donate-qr-wrapper">
+        <img src="./qr.png" alt="Mã QR Donate MB Bank" class="donate-qr-img">
+      </div>
+
+      <div class="donate-bank-info">
+        <div class="donate-info-row">
+          <span class="info-label">Ngân hàng:</span>
+          <span class="info-value">MB Bank (Quân Đội)</span>
+        </div>
+        <div class="donate-info-row">
+          <span class="info-label">Chủ tài khoản:</span>
+          <span class="info-value">LE NGOC ANH</span>
+        </div>
+        <div class="donate-info-row">
+          <span class="info-label">Số tài khoản:</span>
+          <div class="stk-copy-box">
+            <span class="info-value stk-num" id="stk-text">4027082007</span>
+            <button class="copy-btn" id="copy-stk-btn" title="Sao chép số tài khoản">
+              <i class="fa-regular fa-copy"></i>
+              <span class="copy-tooltip">Sao chép</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="donate-footer-note">
+        Quét mã VietQR bằng bất kỳ ứng dụng ngân hàng hoặc ví điện tử nào.
       </div>
     </div>
   </div>
@@ -130,5 +184,6 @@
   <script src="./assets/js/neko.js"></script>
   <script src="./assets/js/neko-init.js"></script>
   <script src="./assets/js/music.js"></script>
+  <script src="./assets/js/donate.js"></script>
 </body>
 </html>
